@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Thanh Phong - Góc nhỏ của tôi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            object-fit: cover;
+        }
+
+        header h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav li a {
+            display: block;
+            padding: 15px 25px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        nav li a:hover {
+            background-color: #667eea;
+            color: white;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        /* Main Content */
+        .main-content {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Blog Post */
+        .blog-post {
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .blog-post:last-child {
+            border-bottom: none;
+        }
+
+        .blog-post img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .post-meta {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .post-meta span {
+            margin-right: 15px;
+        }
+
+        .blog-post h2 {
+            color: #333;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .blog-post h2 a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .blog-post h2 a:hover {
+            color: #667eea;
+        }
+
+        .blog-post p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            display: inline-block;
+            background-color: #667eea;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .read-more:hover {
+            background-color: #5568d3;
+        }
+
+        .tags {
+            margin-top: 15px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #f0f0f0;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            margin-right: 8px;
+            margin-top: 5px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .widget {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .widget h3 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .widget ul {
+            list-style: none;
+        }
+
+        .widget ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .widget ul li:last-child {
+            border-bottom: none;
+        }
+
+        .widget ul li a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .widget ul li a:hover {
+            color: #667eea;
+        }
+
+        .about-widget p {
+            color: #666;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: #667eea;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            background-color: #5568d3;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 32px;
+            }
+
+            .blog-post h2 {
+                font-size: 26px;
+            }
+
+            .blog-post img {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+            }
+
+            header {
+                padding: 40px 20px;
+            }
+
+            .avatar {
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <img class="avatar" src="thanhphongdeptrai.jpg" alt="Avatar">
+            <h1>Blog Thanh Phong</h1>
+            <p>✨ Chia sẻ cuộc sống - Trải nghiệm - Cảm xúc ✨</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">🏠 Trang chủ</a></li>
+            <li><a href="#about">👤 Giới thiệu</a></li>
+            <li><a href="#blog">📝 Blog</a></li>
+            <li><a href="#travel">✈️ Du lịch</a></li>
+            <li><a href="#contact">📧 Liên hệ</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Blog Post 1 -->
+            <article class="blog-post">
+                <img src="z7196515513523_9914b214f9ac5b4454a69d766028ccea.jpg" alt="Thanh xuân vường trường của tôi">
+                <div class="post-meta">
+                    <span>📅 07 Tháng 4, 2025</span>
+                    <span>👤 Admin</span>
+                    <span>💬 12 bình luận</span>
+                </div>
+                <h2><a href="#">Thanh xuân vườn trường của tôi</a></h2>
+                <p>Trường THPT Quỳ Hợp 2 cho tôi những người bạn trong 3 năm cấp 3 của tôi, những người bạn khiến tôi không bao giờ quên trong kí ức tôi, luôn hiện hữu trong kí ức đẹp nhất của tôi...</p>
+                <p>Thanh xuân của tôi rất là đẹp đẽ khiến tôi luôn muốn quay lại một lần nữa để gặp lại thầy cô bạn bè những người mà đã gắn bó với tôi suốt ba năm cấp 3 biết bao kỉ niệm vui có buồn có.</p>
+                <div class="tags">
+                    <span class="tag">#HọcSinh</span>
+                    <span class="tag">#ThanhXuân</span>
+                    <span class="tag">#ViệtNam</span>
+                </div>
+                <br><br>
+                <a href="#" class="read-more">Đọc tiếp →</a>
+            </article>
+
+            <!-- Blog Post 2 -->
+            <article class="blog-post">
+                <img src="buoihoccuoicung.jpg" alt="Lập trình Web">
+                <div class="post-meta">
+                    <span>📅 20 Tháng 6, 2025</span>
+                    <span>👤 Admin</span>
+                    <span>💬 8 bình luận</span>
+                </div>
+                <h2><a href="#">Buổi học cuối cùng của tôi</a></h2>
+                <p>Buổi học cuối cùng của tôi kết thúc bởi những nỗi buồn, thanh xuân nơi vườn trường đã hết các bạn và tôi đều có những tâm trạng riêng, nhưng ai cũng phải chấp nhận không ai không chấp nhận được cả...</p>
+                <p>Thanh xuân nơi cấp 3 là một thứ khó để diễn tả lúc mới vào thì ai cũng muốn nhanh trôi qua, nhưng khi đến hồi kết không ai muốn nó kết thúc cả những kỉ niệm là thứ khiến chúng ta day dứt khó quên..</p>
+                <div class="tags">
+                    <span class="tag">#TuổiTrẻ</span>
+                    <span class="tag">#TrườngHọc</span>
+                    <span class="tag">#NiềmVui</span>
+                    <span class="tag">#ThanhXuân</span>
+                </div>
+                <br><br>
+                <a href="#" class="read-more">Đọc tiếp →</a>
+            </article>
+
+            <!-- Blog Post 3 -->
+            <article class="blog-post">
+                <img src="hocdaihoc.jpg" alt="Sách hay">
+                <div class="post-meta">
+                    <span>📅 15 Tháng 10, 2025</span>
+                    <span>👤 Admin</span>
+                    <span>💬 15 bình luận</span>
+                </div>
+                <h2><a href="#">Những người bạn mới ở môi trường đại học của tôi</a></h2>
+                <p>Khi bước chân lên con đường đại học luôn có những người bạn mới bên cạnh của chúng ta, làm cho chúng ta thấy được một thế giới hoàn toàn mới mẻ trong cuộc sống...</p>
+                <p>Đại học giúp tôi thấy được những bạn bè của các vùng miền khác nhau trên cả nước, mỗi người mỗi giọng nói, mỗi người một quê hương khác nhau.</p>
+                <div class="tags">
+                    <span class="tag">#ĐạiHọc</span>
+                    <span class="tag">#ĐạiNam</span>
+                    <span class="tag">#DNU</span>
+                </div>
+                <br><br>
+                <a href="#" class="read-more">Đọc tiếp →</a>
+            </article>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- About Widget -->
+            <div class="widget about-widget">
+                <h3>Về tác giả</h3>
+                <p>Xin chào! Mình là Thanh Phong một người yêu thích chia sẻ những trải nghiệm cuộc sống, học tập và kiến thức về lập trình web.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="Twitter">🐦</a>
+                    <a href="#" title="YouTube">▶</a>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            <div class="widget">
+                <h3>Chủ đề</h3>
+                <ul>
+                    <li><a href="#">📝 Cuộc sống (15)</a></li>
+                    <li><a href="#">✈️ Du lịch (23)</a></li>
+                    <li><a href="#">💻 Công nghệ (18)</a></li>
+                    <li><a href="#">📚 Học tập (12)</a></li>
+                    <li><a href="#">🍜 Ẩm thực (9)</a></li>
+                </ul>
+            </div>
+
+            <!-- Recent Posts -->
+            <div class="widget">
+                <h3>Bài viết mới</h3>
+                <ul>
+                    <li><a href="#">Thanh xuân vườn trường của tôi</a></li>
+                    <li><a href="#">Buổi học cuối cùng của tôi</a></li>
+                    <li><a href="#">Những người bạn mới ở môi trường đại học của tôi</a></li>
+                    <li><a href="#">Công thức làm bánh mì ngon</a></li>
+                    <li><a href="#">Tips học tiếng Anh hiệu quả</a></li>
+                </ul>
+            </div>
+
+            <!-- Tags -->
+            <div class="widget">
+                <h3>Tags phổ biến</h3>
+                <div class="tags">
+                    <span class="tag">#DuLịch</span>
+                    <span class="tag">#LậpTrình</span>
+                    <span class="tag">#CuộcSống</span>
+                    <span class="tag">#ĐọcSách</span>
+                    <span class="tag">#ẨmThực</span>
+                    <span class="tag">#TrườngHọc</span>
+                    <span class="tag">#ThanhXuân</span>
+                    <span class="tag">#HọcTập</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p><strong>Blog Thanh Phong © 2025</strong></p>
+        <p>Thiết kế bởi <strong>Sinh viên Đại học Đại Nam</strong></p>
+        <p>Môn học: Thiết kế Web và Triển khai Hệ thống Phần mềm</p>
+        <p style="margin-top: 15px;">📧 Email: <a href="mailto:blog@example.com">thanhphong27122007@gmail.com</a></p>
+    </footer>
+</body>
+</html>
